@@ -1,0 +1,49 @@
+<!DOCTYPE  html>
+<html ng-app="MyApp">
+    <head>
+
+    <title> The User Story </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.1/angular-route.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+       <!--Services-->
+        <script src="app/services/auth-service.js"></script>
+        <script src="app/services/user-service.js"></script>
+        <script src="app/services/story-service.js"></script>
+        <!--Controllers-->
+        <script src="app/controllers/main-controller.js"></script>
+        <script src="app/controllers/user-controller.js"></script>
+        <script src="app/controllers/story-controller.js"></script>
+        <!--Directives-->
+        <script src="app/directives/reverse.js"></script>
+
+        <script src="app/app.routes.js"></script>
+        <script src="app/app.js"></script>
+    </head>
+    <body ng-controller="MainController as main">
+    <header>
+        <div class="navbar navbar-default" >
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>User Story</a>
+                </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/users"></a></li>
+            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+                    <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+                    <li ng-if="main.loggedIn"><a href="#">Hello {{ main.user.name }}</a></li>
+                    <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <main class="container">
+        <div ng-view></div>
+    </main>
+    </body>
+</html>
